@@ -5,9 +5,9 @@ Cider Vinegar Effervescent Tablets, Pack of 4. Built with **HTML and CSS** only.
 
 The copy follows `XETAFIT_Landing_Page_Content_V9_Benefits_Update.pdf` (Content V9)
 and the CTA plan matches it. The **visual and motion system** is a rebuild modelled
-on the supplied beverage-site reference recording: saturated red page, deep
-burgundy contrast panels, warm cream product cards, golden purchase buttons,
-heavy sans headlines with an editorial serif, a floating capsule header, giant
+on the supplied beverage-site reference recording, coloured with a three-colour
+palette (2026-11-15): Fresh Apple Green page, Deep Botanical Green contrast panels
+and navigation, Pure White product cards, heavy sans headlines with an editorial serif, a floating capsule header, giant
 low-opacity serif lettering and numbered editorial layouts. Only XETAFIT's own
 logo, packaging and photography are used; nothing from the reference brand.
 
@@ -57,64 +57,76 @@ xetafit-landing/
 
 ## 3. Design system
 
-**Colour.** Sampled from the reference frames, then contrast-checked (WCAG):
+**Colour.** Three colours only, set as variables in `css/style.css` and
+contrast-checked (WCAG). Everything else is one of them at reduced opacity
+(`rgba(var(--color-contrast-rgb), a)`, white with alpha) or a tint mixed from them.
 
 | Token | Value | Use | Contrast |
 |---|---|---|---|
-| `--red` | `#DF1635` | page background, open sections, the stages behind product renders | white text 4.9:1 |
-| `--burgundy` | `#AE0E29` | contrast panels (02, 05, 08, 10), lifestyle card, final card, safety notes | white 7.3:1, gold 4.5:1 |
-| `--burgundy-deep` | `#A3071E` | header capsules, footer | white 8.1:1 |
-| `--cream` | `#FDF2E3` | product container, step / review / comparison cards, cream panels (06, 11) | ink 17:1 |
-| `--gold` | `#FDAB1C` | purchase buttons only (Buy now, Add to cart, Get your 4-pack) | ink text 9.9:1 |
-| `--gold-hi` | `#FAC53C` | italic headline accents, numerals, labels on burgundy | 3.1:1 on red: large type only |
-| `--ink` | `#1E0D09` | text on cream, logo plate, small badges | |
-| `--ink-soft` / `--red-ink` | `#6B4A40` / `#B50F2C` | secondary text / red accents on cream | 7.1:1 / 6.1:1 |
+| `--color-primary` | `#8FC52E` Fresh Apple Green | page background, open sections, product stages, accents and purchase buttons on deep green | deep green text 5.9:1 |
+| `--color-secondary` | `#FFFFFF` Pure White | product container, step / review / comparison cards, light panels (06, 11), text on deep green | deep green text 12.1:1 |
+| `--color-contrast` | `#173D2B` Deep Botanical Green | text on green and white, contrast panels (02, 05, 08, 10), lifestyle / final / safety cards, header capsules, logo plate, footer, purchase buttons on light surfaces | white text 12.1:1 |
+| `--color-primary-soft` | primary 14% on white (`#EFF7E2`) | inset areas on white: pack stage, pack chips, certificate table | deep green 11:1 |
+| `--color-contrast-muted` | deep green 80% on white (`#456455`) | secondary text on white | 6.5:1 |
+| `--color-contrast-line` | deep green 12% on white (`#E3E8E6`) | table hairlines, disabled Add to cart | muted text 5.3:1 |
+| `--color-contrast-raised` | deep green + 15% primary (`#29512B`) | logo plate hover, footer logo plate | white 9.1:1 |
 
-Rules: small text on red is always white (cream is 4.4:1); gold text on red is only
-used at headline sizes. The green-and-white packaging is never recoloured: its
-contrast with the red is the point.
+Rules: text on apple green is always deep green (white on apple green is only
+2.1:1, so it is never used for text); apple green as text appears only on deep
+green. Headline accents (`.h2 em`) are deep green on green and white surfaces and
+apple green on deep green. The green-and-white packaging, the logo and every
+photograph are never recoloured.
 
 **Type.** DM Sans 800 capitals for headlines (tight tracking), with an italic
-Cormorant Garamond accent in gold (`.h2 em`). Editorial panels use all-serif
+Cormorant Garamond accent (`.h2 em`, apple green on deep green). Editorial panels use all-serif
 capitals (`.h2--serif`: Benefits, Lifestyle). Cormorant also sets product names,
 step names, numerals and the giant background lettering (always lining figures).
 DM Sans 400–700 for body, labels and buttons. All sizes use `clamp()`. The hero
 headline is one line from 1100 px up, two lines on tablets, three on phones.
 
-**Surfaces.** The page is red. A section is either *open* (on the red) or a
-*panel*: a rounded burgundy or cream block inset 8–14 px from the page edge, so a
-strip of red shows between neighbouring blocks, as in the reference. Each surface
-sets `--fg / --head / --em / --soft / --line / --focus`, and every component reads
-those, so a component works on any surface.
+**Surfaces.** The page is apple green. A section is either *open* (on the green)
+or a *panel*: a rounded deep-green or white block inset 8–14 px from the page edge,
+so a strip of apple green shows between neighbouring blocks, as in the reference.
+Each surface sets `--fg / --head / --em / --soft / --line / --focus` plus the
+button and accent colours (`--cta-* / --alt-* / --accent / --on-accent /
+--fg-rgb`), and every component reads those, so a component works on any surface.
+(The class names `.panel--burgundy`, `.panel--cream`, `.btn--gold` and
+`.btn--cream` are kept from the earlier palette; they now mean deep green, white,
+purchase and white.)
 
 | # | Section | Surface | Composition |
 |---|---|---|---|
-| 01 | Hero | red | one-line headline; copy + CTA · tube with two tablets · three facts; "Fizz. Sip. Repeat." marquee behind the tube |
-| 02 | The switch | burgundy panel | copy + gold check list; tilted tube on a red stage with the cream "old way" card |
-| 03 | Product + purchase | red | giant "Pack of 4 · 60 Tablets" lettering behind one large cream container: pack image left, purchase column right |
-| 04 | How it works | red | three cream cards with the photographed drop / fizz / sip stages and dark number badges |
-| 05 | Benefits | burgundy panel | tube centred, six benefits with gold serif numerals either side, gold CTA |
-| 06 | Ingredients | cream panel | tube on a red stage with "500 mg" lettering; "Per tablet" facts label with the sodium notice |
-| 07 | Lifestyle | red | full campaign photograph with a burgundy card overlapping its lower left |
-| 08 | Comparison | burgundy panel | cream card (liquid ACV) vs red card (XETAFIT), matching cream-studio photographs, gold "vs" disc |
-| 09 | Reviews | red | four cream placeholder cards (verified reviews only), gold CTA |
-| 10 | Quality | burgundy panel | certificate preview on a paper stack + batch details, View certificate |
-| 11 | FAQ | cream panel | heading + always-visible safety card; native `<details>` list with hairline dividers |
-| 12 | Final | red | burgundy card: headline, Buy now, four-pack photograph breaking out of the card top |
+| 01 | Hero | apple green | one-line headline; copy + CTA · tube with two tablets · three facts; "Fizz. Sip. Repeat." marquee behind the tube |
+| 02 | The switch | deep-green panel | copy + apple-green check list; tilted tube on an apple-green stage with the white "old way" card |
+| 03 | Product + purchase | apple green | giant "Pack of 4 · 60 Tablets" lettering behind one large white container: pack image left, purchase column right |
+| 04 | How it works | apple green | three white cards with the photographed drop / fizz / sip stages and dark number badges |
+| 05 | Benefits | deep-green panel | tube centred, six benefits with apple-green serif numerals either side, apple-green CTA |
+| 06 | Ingredients | white panel | tube on a green stage with "500 mg" lettering; "Per tablet" facts label with the sodium notice |
+| 07 | Lifestyle | apple green | full campaign photograph with a deep-green card overlapping its lower left |
+| 08 | Comparison | deep-green panel | white card (liquid ACV) vs apple-green card (XETAFIT), matching cream-studio photographs, apple-green "vs" disc |
+| 09 | Reviews | apple green | four white placeholder cards (verified reviews only), deep-green CTA |
+| 10 | Quality | deep-green panel | certificate preview on a paper stack + batch details, View certificate |
+| 11 | FAQ | white panel | heading + always-visible deep-green safety card; native `<details>` list with hairline dividers |
+| 12 | Final | apple green | deep-green card: headline, Buy now, four-pack photograph breaking out of the card top |
 
-**Header.** Three floating capsules: the official logo on a near-black plate
-(its orange mark is 1.4:1 on the red and 5.6:1 on the plate, so the plate is
-needed), a centred burgundy navigation group whose active link turns cream as
-you scroll, and on the right a certificate icon plus the cream **Product** pill.
+**Header.** Three floating capsules: the official logo on a deep-green plate
+(the logo's white lettering is 2.1:1 on apple green and 12:1 on the plate, its
+orange mark 3.6:1 on the plate, so the plate is needed), a centred deep-green
+navigation group whose active link turns white as you scroll, and on the right
+a certificate icon plus the white **Product** pill (both hover to apple green).
 Below 960 px the navigation becomes a **Menu** capsule that opens a full-height
-burgundy menu. It is CSS only: the menu shows while `#menu` is the URL target,
+deep-green menu. It is CSS only: the menu shows while `#menu` is the URL target,
 and following any link inside it changes the target, so it closes by itself.
 Opening it does not move the page.
 
 **Buttons.** Compact capsules with a small arrow, 42 px (50 px for `.btn--lg`):
-`.btn--gold` purchase, `.btn--cream` information, `.btn--ghost` outline on dark.
-Hover and keyboard focus: the colour lightens over 0.24 s, the button lifts 1 px
-and the arrow moves 3 px. The disabled Add to cart is a muted cream with a
+`.btn--gold` purchase, `.btn--cream` information, `.btn--ghost` outline.
+Purchase buttons are deep green with white text on apple-green and white
+surfaces, and apple green with deep-green text on deep green (a deep-green button
+would disappear there). Hover and keyboard focus change the colour over 0.24 s:
+to apple green on white surfaces, to white on apple-green and deep-green surfaces
+(a white button on apple green turns deep green). The button lifts 1 px and the
+arrow moves 3 px. The disabled Add to cart is a muted grey-green with a
 not-allowed cursor.
 
 ## 4. Motion (CSS only)
@@ -145,7 +157,7 @@ nothing hides again when you scroll back up.
 | Breathing | pack, final photograph | 1.00 → 1.02, 6.4–8 s a cycle, starting after the entrance, on its own nested wrapper |
 | Light | product renders, campaign photographs | a soft light band sweeps each render every 10 s (masked to its silhouette); a slow daylight shift over the photos |
 | Hover | buttons, header, cards, certificate | buttons 0.24 s; cards lift 3–4 px; the certificate straightens |
-| Navigation / FAQ | header / 11 | the link of the section in view becomes a cream capsule; answers open and close smoothly where `::details-content` is supported |
+| Navigation / FAQ | header / 11 | the link of the section in view becomes a white capsule; answers open and close smoothly where `::details-content` is supported |
 
 **The reveal system** (`css/animations.css`), one transform per element:
 
@@ -260,7 +272,7 @@ the closed tube is always the base state, so the product never stays hidden.
 | 0.1–1.0 s | the cap turns (312° in all) and climbs its thread, one pitch per turn; the bridges in its groove travel round, which is what shows the rotation |
 | 1.0–1.5 s | free of the thread, the cap lifts about 3 cm and tips 6°; the threaded neck, the rim and the dark opening appear |
 | 1.06–1.9 s | the tablet, lying flat inside, rises through the opening (the front wall hides its lower part until it is out), then turns to its resting angle between the opening and the cap |
-| 1.46–2.6 s | benefits 01 → 06, 0.09 s apart, from the moment the tablet clears the rim: the gold number rises, the title rolls up from its masks, the description follows |
+| 1.46–2.6 s | benefits 01 → 06, 0.09 s apart, from the moment the tablet clears the rim: the apple-green number rises, the title rolls up from its masks, the description follows |
 | from 1.9 s | the tablet hovers (6 px, 5.2 s); the tube and the open cap stay still |
 
 **Why it is a separate render.** The studio packshot is seen from about the middle of
@@ -379,7 +391,7 @@ reflection, Beer-Lambert absorption and scattering in the drink:
 |---|---|---|
 | `glass-water.webp`, `glass-drink.webp`, `glass-shine.webp`, `glass-fizz.webp`, `glass-mask.webp` | the tumbler as registered layers (rendered on the earlier forest green) | not used |
 | `glass-drink-arch.webp` | the finished drink on the earlier lifestyle arch colour | not used |
-| `shot-amber.webp` | shot glass of liquid ACV (rendered on `#F6EBD3`, the tile colour behind it) | 02 the switch ("the old way") |
+| `shot-amber.webp` | shot glass of liquid ACV (transparent; sits on the `--color-primary-soft` tile) | 02 the switch ("the old way") |
 | `plinth.webp` | clay plinth with contact shadow | not used |
 | `bubble-1..3.webp` | hero carbonation sprites: thin bright meniscus ring, warm inner edge, specular point (`python tools/render_props.py --bubbles` rebuilds only these) | 01 hero |
 | `tablet-c.webp` | a third tablet render, lying flat (from `render_product.py`) | not used |

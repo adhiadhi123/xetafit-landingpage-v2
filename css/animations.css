@@ -94,7 +94,7 @@
   100% { opacity: 0; transform: translate3d(0, calc(var(--h) * -1), 0) scale(1); }
 }
 @keyframes fizz-drift { from { translate: calc(var(--w) * -1) 0; } to { translate: var(--w) 0; } }
-@keyframes nav-on { from, to { background-color: var(--cream); color: var(--ink); } }
+@keyframes nav-on { from, to { background-color: var(--color-secondary); color: var(--color-contrast); } }
 
 /* Section 02: reference-derived transparent layers; shared drift preserves the axis. */
 @keyframes switch-float {
@@ -308,7 +308,7 @@
   .tab--2 .tab__bob { animation: hero-tablet-right 5.5s ease-in-out infinite; }
 }
 
-/* The header link of the section in view is highlighted (cream capsule), as in the reference. */
+/* The header link of the section in view is highlighted (white capsule), as in the reference. */
 @supports (timeline-scope: --a) and (animation-range: cover 0% cover 100%) {
   @media (min-width: 960px) and (prefers-reduced-motion: no-preference) {
     body { timeline-scope: --v-how, --v-benefits, --v-ingredients, --v-reviews, --v-quality, --v-faq; }

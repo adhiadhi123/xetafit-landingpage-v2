@@ -43,7 +43,7 @@
 .bx__shadow { opacity: .6; }
 .bx__tab-rise, .bx__tab-float, .bx__tab-img, .bx__cap-img { display: block; width: 100%; height: 100%; }
 .bx__tab-img, .bx__cap-img { overflow: clip; }                 /* one frame of each strip */
-.bx__tab-img { filter: drop-shadow(0 1.2cqh .9cqh rgba(60, 0, 12, .22)); }   /* static: rasterised once */
+.bx__tab-img { filter: drop-shadow(0 1.2cqh .9cqh rgba(var(--color-contrast-rgb), .22)); }   /* static: rasterised once */
 .bx__cap-strip { width: 100%; }
 .bx__tab-strip { height: 100%; }
 

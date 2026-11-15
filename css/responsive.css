@@ -41,7 +41,7 @@
     height: 76px;
     margin: 0;
     font-size: 2.1rem;
-    box-shadow: 0 0 0 9px var(--burgundy);
+    box-shadow: 0 0 0 9px var(--color-contrast);
   }
 
   .site-footer__inner { grid-template-columns: auto 1fr; align-items: center; column-gap: 2.4rem; }
@@ -81,7 +81,7 @@
   /* 02 */
   .switch__grid { grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; }
 
-  /* 03: one cream container, pack on the left, purchase column on the right */
+  /* 03: one white container, pack on the left, purchase column on the right */
   .buy-card { grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 52px); padding: 12px; }
   .buy-card__media { min-height: 100%; }
   .buy-card__body { padding: clamp(24px, 3vw, 44px) clamp(10px, 2vw, 36px) clamp(24px, 3vw, 44px) 0; }
@@ -94,7 +94,7 @@
   .formula__col--r .bfact__n { order: 2; }
   .formula__col--r .bfact p { margin-left: auto; }
 
-  /* 07: photograph on the right, burgundy card overlapping its lower left */
+  /* 07: photograph on the right, deep-green card overlapping its lower left */
   .life { grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: center; gap: clamp(24px, 3vw, 48px); }
   .life__photo { grid-column: 2; grid-row: 1; aspect-ratio: 3 / 2; margin-top: 32px; }
   .life__card { grid-column: 1; grid-row: 1; margin: 0; }
@@ -109,7 +109,7 @@
   /* 12: copy left, photograph right, breaking out of the top of the card */
   .final { padding-top: calc(var(--pad-y) * 1.1); }
   .final-card { grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(16px, 2vw, 32px); }
-  .final__photo { order: 0; aspect-ratio: auto; min-height: 460px; margin-top: calc(-1 * clamp(48px, 6vw, 96px)); box-shadow: 0 40px 70px -40px rgba(30, 0, 8, .8); }
+  .final__photo { order: 0; aspect-ratio: auto; min-height: 460px; margin-top: calc(-1 * clamp(48px, 6vw, 96px)); box-shadow: 0 40px 70px -40px rgba(var(--color-contrast-rgb), .8); }
 
   /* Certificate page */
   .cert-body .wrap { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
